@@ -34,7 +34,7 @@ const getTrending = async (url: string): Promise<HomePageShow[]> => {
     )
     showsArr.length = 50
     let shows = showsArr.map(show => {
-      let img = BASE_URL + getSrcText(show, IMG_SELECTOR);
+      let img = BASE_URL + getDataSrcText(show, IMG_SELECTOR);
       let showURL = BASE_URL + getHref(show, SHOW_URL_SELEECTOR);
       let name = getTextContent(show, SHOW_NAME_SELECTOR).trim()
       let currentEpUrl = BASE_URL + getHref(show, CURRENT_EPISODE_URL_SELECTOR);
@@ -65,6 +65,8 @@ const getTextContent = (doc: Element, selector: string): string =>
 
 const getSrcText = (doc: Element, selector: string): string =>
   select(doc, selector).attributes.getNamedItem("src").textContent;
+  const getDataSrcText = (doc: Element, selector: string): string =>
+  select(doc, selector).attributes.getNamedItem("data-src").textContent;
 
 const select = (doc: Element, selector: string): Element =>
   doc.querySelector(selector);

@@ -3,7 +3,7 @@ import express from "express";
 const router = express.Router();
 
 //define routes
-router.get("",WatchController.getVideo)
+router.post("",WatchController.getVideo)
 
 router.all('/', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
